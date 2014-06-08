@@ -1,0 +1,170 @@
+name: skullprotect
+main: de.bruuff.skullprotect.skullprotect
+version: 0.1
+author: bruuff
+commands:
+  sp:
+    usage: /sp
+    description: Zeigt Hilfe an
+  sp newgroup:
+    usage: /sp newgroup <groupname>
+    description: Creates a new group 
+  sp groups:
+    usage: /sp list
+    description: Lists Groups
+  sp add:
+    usage: /sp add <group> <player>
+    description: Adds players to your Group
+  sp rank:
+    usage: /sp rank <group> <player> <rank>
+    description: Promotes players in your Group
+  sp remove:
+    usage: /sp remove <group> <player>
+    description: Removes players from your Group
+  sp all:
+    usage: /sp all
+    description: Gives you all markers you can use
+  sp clear:
+    usage: /sp clear
+    description: Removes all markers in your inventory
+  sp get:
+    usage: /sp get [player/group]
+    description: Gets a marker for a specific player
+  sp start:
+    usage: /sp start [player/group]
+    description: Gets a starter for a specific player
+permissions:
+  skullprotect.*:
+    description: Admin override.
+    children:
+      skullprotect.place: true
+      skullprotect.break: true
+      skullprotect.group: true
+      skullprotect.get: true
+  skullprotect.place.*:
+    description: Build everywhere.
+    default: op
+    children:
+      skullprotect.place.skull: true
+      skullprotect.place.block: true
+  skullprotect.place.skull.*:
+    description: place every skull everywhere.
+    default: op
+    children:
+      skullprotect.place.skull.own: true
+      skullprotect.place.skull.foreign: true
+  skullprotect.place.skull.own:
+    description: place own skulls everywhere.
+    default: true
+  skullprotect.place.skull.foreign:
+    description: place foreign skulls everywhere.
+    default: op
+  skullprotect.place.blocks:
+    description: place blocks (no skulls) everywhere.
+    default: op
+  skullprotect.break.*:
+    description: Break everywhere.
+    default: op
+    children:
+      skullprotect.break.skull: true
+      skullprotect.break.block: true
+  skullprotect.break.skull.*:
+    description: break every skull everywhere.
+    default: op
+    children:
+      skullprotect.place.break.own: true
+      skullprotect.place.break.foreign: true
+  skullprotect.break.skull.own:
+    description: break own skulls everywhere.
+    default: true
+  skullprotect.break.skull.foreign:
+    description: break foreign skulls everywhere.
+    default: op
+  skullprotect.break.blocks:
+    description: break blocks (no skulls) everywhere.
+    default: op
+  skullprotect.group.*:
+    description: Edit every group.
+    default: op
+    children:
+      skullprotect.group.new: true
+      skullprotect.group.list: true    
+      skullprotect.group.op: true
+      skullprotect.group.assistant: true
+      skullprotect.group.member: true
+  skullprotect.group.new:
+    description: Can create a new group.
+    default: true
+  skullprotect.group.list:
+    description: Can create a new group.
+    default: true
+  skullprotect.group.own.*:
+    description: Operator in any group
+    default: op
+    children:
+      skullprotect.group.own.op: true
+      skullprotect.group.own.assistant: true
+  skullprotect.group.own.op:
+    description: Operator in own group
+    default: true  
+  skullprotect.group.own.assistant:
+    description: Assistant in own groups
+    default: true    
+  skullprotect.group.foreign.*:
+    description: Operator in any group
+    default: op
+    children:
+      skullprotect.group.foreign.op: true
+      skullprotect.group.foreign.assistant: true
+  skullprotect.group.foreign.op:
+    description: Operator in any group
+    default: op
+  skullprotect.group.foreign.assistant:
+    description: Assistant in any group
+    default: op
+  skullprotect.get.*:
+    description: Get all skull that you request.
+    default: op
+    children:
+      skullprotect.get.marker: true
+      skullprotect.get.starter: true
+  skullprotect.get.marker.*:
+    description: Get all skull that you request.
+    default: op
+    children:
+      skullprotect.get.marker.own: true
+      skullprotect.get.marker.group: true
+      skullprotect.get.marker.unowned: true
+      skullprotect.get.marker.foreign: true
+  skullprotect.get.marker.own:
+    description: Can get your own skull.
+    default: true
+  skullprotect.get.marker.group:
+    description: Can get your own groups skull.
+    default: true
+  skullprotect.get.marker.unowned:
+    description: Can get unowned/wilderness skull.
+    default: true
+  skullprotect.get.marker.foreign:
+    description: Get all skull that you request.
+    default: op
+  skullprotect.get.starter.*:
+    description: Get all skull that you request.
+    default: op
+    children:
+      skullprotect.get.starter.own: true
+      skullprotect.get.starter.group: true
+      skullprotect.get.starter.unowned: true
+      skullprotect.get.starter.foreign: true
+  skullprotect.get.starter.own:
+    description: Can get your own skull.
+    default: true
+  skullprotect.get.starter.group:
+    description: Can get your own groups skull.
+    default: true
+  skullprotect.get.starter.unowned:
+    description: Can get unowned/wilderness skull.
+    default: true
+  skullprotect.get.starter.foreign:
+    description: Get all skull that you request.
+    default: op
