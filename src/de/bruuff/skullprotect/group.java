@@ -4,17 +4,25 @@ import java.util.ArrayList;
 
 public class group {
 	String name;
+	int size;
 	ArrayList<String> ops;
 	ArrayList<String> ass;
 	ArrayList<String> mem;	
 	
-	public group(String name_,ArrayList<String> ops_, ArrayList<String> ass_,ArrayList<String> mem_){
+	public group(String name_,int size_,ArrayList<String> ops_, ArrayList<String> ass_,ArrayList<String> mem_){
 		name=name_;
+		size=size_;
 		ops = ops_;
 		ass = ass_;
 		mem = mem_;	
 	} 
-	
+	public group(String name_,ArrayList<String> ops_, ArrayList<String> ass_,ArrayList<String> mem_){
+		name=name_;
+		size=0;
+		ops = ops_;
+		ass = ass_;
+		mem = mem_;	
+	}
 	public void addop(String name){
 		ops.add(name);
     }
@@ -37,6 +45,12 @@ public class group {
 		return name; 
     }
 	
+	public int getSize(){
+		return size; 
+    }
+	public void setSize(int size_){
+		size = size_;
+    }
 	public ArrayList<String> getOps(){
 		return ops; 
     }

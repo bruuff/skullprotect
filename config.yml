@@ -1,0 +1,30 @@
+# Change what you need to.
+skullprotect:
+# Unowned settings
+# Only change the head name in brand new servers.
+# check out MHF heads!
+  unowned:
+    name: Wilderness
+    head: MHF_Cake
+#  
+# Economy settings (Economy requires Vault!)
+  economy:
+    useeconomy: true
+    newdaymessage: 'A new day! Yay!'
+# 
+#   you can use: 
+#     number of [plots], player [money]
+#     [+],[-],[*],[/],[^],[(],[)]
+#     spaces will be ignored during calculation
+    tax: 5 * plots
+    starterprice: plots + money / 10
+    claimprice: plots / 10
+    maxclaim: money / 10
+#  
+#  if players can't pay tax, apply effect? (duration in ticks)
+#  in a group all members are affected.
+    punishment:
+        use: true
+        effect: CONFUSION
+        amplifier: 1
+        duration: 200

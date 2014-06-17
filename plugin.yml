@@ -1,6 +1,6 @@
 name: skullprotect
 main: de.bruuff.skullprotect.skullprotect
-version: 0.1
+version: 0.3
 author: bruuff
 commands:
   sp:
@@ -33,6 +33,15 @@ commands:
   sp start:
     usage: /sp start [player/group]
     description: Gets a starter for a specific player
+  sp prices:
+    usage: /sp prices
+    description: Lists prices for everything.
+  sp deposit:
+    usage: /sp deposit <group> <amount>
+    description: Deposit to your groups.
+  sp withdraw:
+    usage: /sp withdraw <group> <amount>
+    description: Withdraw from your groups (op).
 permissions:
   skullprotect.*:
     description: Admin override.
