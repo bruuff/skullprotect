@@ -1,26 +1,11 @@
 name: skullprotect
 main: de.bruuff.skullprotect.skullprotect
-version: 0.3
+version: 0.4
 author: bruuff
 commands:
   sp:
     usage: /sp
-    description: Zeigt Hilfe an
-  sp newgroup:
-    usage: /sp newgroup <groupname>
-    description: Creates a new group 
-  sp groups:
-    usage: /sp list
-    description: Lists Groups
-  sp add:
-    usage: /sp add <group> <player>
-    description: Adds players to your Group
-  sp rank:
-    usage: /sp rank <group> <player> <rank>
-    description: Promotes players in your Group
-  sp remove:
-    usage: /sp remove <group> <player>
-    description: Removes players from your Group
+    description: Basic command
   sp all:
     usage: /sp all
     description: Gives you all markers you can use
@@ -29,25 +14,60 @@ commands:
     description: Removes all markers in your inventory
   sp get:
     usage: /sp get [player/group]
-    description: Gets a marker for a specific player
-  sp start:
-    usage: /sp start [player/group]
-    description: Gets a starter for a specific player
-  sp prices:
-    usage: /sp prices
-    description: Lists prices for everything.
-  sp deposit:
-    usage: /sp deposit <group> <amount>
+    description: Gets a marker for a specific player     
+  group <group>:
+    usage: /group <group>
+    description: show group info
+    aliases: [g]
+  group <group> deposit:
+    usage: /group <group> deposit  <amount>
     description: Deposit to your groups.
-  sp withdraw:
-    usage: /sp withdraw <group> <amount>
-    description: Withdraw from your groups (op).
+  group <group> withdraw:
+    usage: /group <group> withdraw <amount>
+    description: Withdraw from your groups (op).    
+  group <group> rename <newname>:
+    usage: /group rename <group> <newname>
+    description: Renames group.
+  group <group> add <player>:
+    usage: /group add <group> <player>
+    description: Adds players to your Group
+  group <group> rank <player> <rank>:
+    usage: /group rank <group> <player> <rank>
+    description: Promotes players in your Group
+  group <group> leave:
+    usage: /group leave <group>
+    description: Leaves the group
+  group <group> remove <player>:
+    usage: /group remove <group> <player>
+    description: Removes players from your Group   
+  group <group> toggle <permission>:
+    usage: /group <group> toggle <permission>
+    description: Toggle group permissions
+  group new <group>:
+    usage: /group new <groupname>
+    description: Creates a new group 
+  group list:
+    usage: /group list
+    description: Lists Groups    
+  private:
+    usage: /private
+    description: Shows info about private property
+    aliases: [p]
+  private prices:
+    usage: /private prices
+    description: Lists prices for everything.
+  private prices:
+    usage: /private toggle
+    description: Toggle private plot permissions  
+
+    
 permissions:
   skullprotect.*:
     description: Admin override.
     children:
       skullprotect.place: true
       skullprotect.break: true
+      skullprotect.interact: true
       skullprotect.group: true
       skullprotect.get: true
   skullprotect.place.*:
@@ -92,44 +112,63 @@ permissions:
   skullprotect.break.blocks:
     description: break blocks (no skulls) everywhere.
     default: op
+  skullprotect.interact.*:
+    description: Interact everywhere.
+    default: op
+    children:
+      skullprotect.interact.own: true
+      skullprotect.interact.foreign: true  
+  skullprotect.interact.own:
+    description: Interact where you have access.
+    default: true
+  skullprotect.interact.foreign:
+    description: Interact everywhere.
+    default: op     
   skullprotect.group.*:
     description: Edit every group.
     default: op
     children:
       skullprotect.group.new: true
-      skullprotect.group.list: true    
-      skullprotect.group.op: true
-      skullprotect.group.assistant: true
-      skullprotect.group.member: true
+      skullprotect.group.info: true    
+      skullprotect.group.own: true
+      skullprotect.group.foreign: true
   skullprotect.group.new:
     description: Can create a new group.
     default: true
-  skullprotect.group.list:
+  skullprotect.group.info:
     description: Can create a new group.
     default: true
   skullprotect.group.own.*:
-    description: Operator in any group
+    description: Operator access in own group
     default: op
     children:
-      skullprotect.group.own.op: true
+      skullprotect.group.own.operator: true
       skullprotect.group.own.assistant: true
-  skullprotect.group.own.op:
-    description: Operator in own group
-    default: true  
+      skullprotect.group.own.member: true
+  skullprotect.group.own.operator:
+    description: Operator access in own group
+    default: op
   skullprotect.group.own.assistant:
-    description: Assistant in own groups
-    default: true    
+    description: Assistant access in own groups
+    default: op
+  skullprotect.group.own.member:
+    description: Member access in own groups
+    default: true
   skullprotect.group.foreign.*:
-    description: Operator in any group
+    description: Operator access in any group
     default: op
     children:
-      skullprotect.group.foreign.op: true
+      skullprotect.group.foreign.operator: true
       skullprotect.group.foreign.assistant: true
-  skullprotect.group.foreign.op:
-    description: Operator in any group
+      skullprotect.group.foreign.member: true
+  skullprotect.group.foreign.operator:
+    description: Operator access in any group
     default: op
   skullprotect.group.foreign.assistant:
-    description: Assistant in any group
+    description: Assistant access in any group
+    default: op
+  skullprotect.group.foreign.member:
+    description: Member access in any group
     default: op
   skullprotect.get.*:
     description: Get all skull that you request.

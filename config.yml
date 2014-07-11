@@ -6,6 +6,18 @@ skullprotect:
   unowned:
     name: Wilderness
     head: MHF_Cake
+  groups:
+    head: MHF_Villager
+#  
+# Which blocks can still be interacted with on foreign ground? 
+  interaction:
+    blocks: ''
+# Donkeys/mules are HORSE too
+    entities: 'HORSE'
+#  
+# Landmark settings
+  landmark:
+    radius: 10
 #  
 # Economy settings (Economy requires Vault!)
   economy:
@@ -16,10 +28,10 @@ skullprotect:
 #     number of [plots], player [money]
 #     [+],[-],[*],[/],[^],[(],[)]
 #     spaces will be ignored during calculation
-    tax: 5 * plots
-    starterprice: plots + money / 10
-    claimprice: plots / 10
-    maxclaim: money / 10
+    tax: '5 * plots'
+    landmarkprice: 'plots + money / 10'
+    claimprice: 'plots / 10'
+    maxclaim: 'money / 10'
 #  
 #  if players can't pay tax, apply effect? (duration in ticks)
 #  in a group all members are affected.
@@ -28,3 +40,7 @@ skullprotect:
         effect: CONFUSION
         amplifier: 1
         duration: 200
+#
+  compatibility:       
+#  /sp all/get will drop skull on ground instead of giving directly if set to true
+    dropall: false
